@@ -1,0 +1,46 @@
+# Default unencrypted port
+http://:8080 {
+	# Redirect HTTP to HTTPS
+	redir 301 {
+		if {scheme} is http
+		/  https://{host}{uri}
+	}
+}
+
+# Default encrypted port
+https://:2015 {
+	errors stdout
+	ext .html .md .php
+	gzip
+	log / stdout "{combined}"
+	root /var/www/app/public_html
+	status 204 /favicon.ico
+
+	fastcgi / php71_fpm_1:9000 {
+		except /css
+		ext .php
+		index index.php
+		split .php
+		upstream php71_fpm_2:9000
+	}
+
+	tls self_signed
+}
+
+# Terminated TLS/SSL unencrypted port
+http://:8443 {
+	errors stdout
+	ext .html .md .php
+	gzip
+	log / stdout "{combined}"
+	root /var/www/app/public_html
+	status 204 /favicon.ico
+
+	fastcgi / php71_fpm_1:9000 {
+		except /css
+		ext .php
+		index index.php
+		split .php
+		upstream php71_fpm_2:9000
+	}
+}

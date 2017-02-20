@@ -1,0 +1,15 @@
+# ------------------------------------------------------------------------------
+# Ref: https://docs.docker.com/compose/compose-file/
+# 
+# docker-compose -p caddyhw1 down
+# 
+# docker-compose -p caddyhw1 up -d
+# ------------------------------------------------------------------------------
+version: "2"
+services:
+  caddy:
+    image: "jdeathe/caddy:latest"
+    ports:
+      - "80:8080"
+      - "443:2015"
+    restart: "always"

@@ -1,0 +1,30 @@
+# Default unencrypted port
+http://:8080 {
+	# Redirect HTTP to HTTPS
+	redir 301 {
+		if {scheme} is http
+		/  https://{host}{uri}
+	}
+}
+
+# Default encrypted port
+https://:2015 {
+	gzip
+	log / stdout "{combined}"
+	errors stdout
+	ext .html .md
+	root /var/www/app/public_html
+	status 204 /favicon.ico
+
+	tls self_signed
+}
+
+# Terminated TLS/SSL unencrypted port
+http://:8443 {
+	gzip
+	log / stdout "{combined}"
+	errors stdout
+	ext .html .md
+	root /var/www/app/public_html
+	status 204 /favicon.ico
+}

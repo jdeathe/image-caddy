@@ -1,0 +1,55 @@
+# ------------------------------------------------------------------------------
+# Ref: https://docs.docker.com/compose/compose-file/
+# 
+# docker-compose -f docker-compose-php.yml -p caddyphp1 down
+# 
+# docker-compose -f docker-compose-php.yml -p caddyphp1 up -d
+# docker-compose -f docker-compose-php.yml -p caddyphp1 scale php71_fpm=2
+# docker-compose -f docker-compose-php.yml -p caddyphp1 up -d --force-recreate --no-deps caddy
+#
+# Known Issues:
+# Use of a named data volume is necessary to share the application directory 
+# with the PHP-FPM containers. This means that redeployment will not update the 
+# application code/files. 
+# Use of volumes_from works outside of docker-compose but when used with it 
+# flags a circular dependancy error. This suggests that application code should 
+# be distributed with the PHP-FPM containers however, in docker-compose version 
+# 3, the option for volumes_from has been removed so an application cannot be 
+# updated without removing the named volume.
+# ------------------------------------------------------------------------------
+version: "2"
+networks:
+  php_fpm:
+    driver: "bridge"
+volumes:
+  data-app:
+    driver: "local"
+services:
+  caddy:
+    command: ["--conf", "/etc/caddy/Caddyfile-php", "-quiet=true"]
+    depends_on:
+      - "php71_fpm"
+    image: "jdeathe/caddy:latest"
+    links:
+      - "php71_fpm"
+    networks:
+      - "php_fpm"
+    ports:
+      - "80:8080"
+      - "443:2015"
+    restart: "always"
+    volumes:
+      - "data-app:/var/www/app"
+  php71_fpm:
+    group_add:
+      - "497"
+    image: "php:7.1.1-fpm-alpine"
+    networks:
+      php_fpm:
+        aliases:
+          - "php71_fpm"
+    restart: "always"
+    user: "www-data:www-data"
+    volumes:
+      - "data-app:/var/www/app"
+    working_dir: "/var/www/app"
