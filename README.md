@@ -1,7 +1,5 @@
 # caddy
 
-Docker Image including Caddy 0.9.5.
-
 [Caddy](http://caddyserver.com/) - The HTTP/2 web server with automatic HTTPS.
 
 ## Overview & links
@@ -18,7 +16,7 @@ $ docker run -d \
   --restart always \
   --publish 443:2015 \
   --publish 80:8080 \
-  jdeathe/caddy
+  jdeathe/caddy:1.0.0
 ```
 
 Now point your browser to `http://{docker-host}` where `{docker-host}` is the host name of your docker server and, if all went well, you should be redirected to the `https://{docker-host}` and, after accepting the warning about the automatically generated self-signed TLS/SSL certificate, see the "Hello, world!" page.

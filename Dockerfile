@@ -1,17 +1,27 @@
+# =============================================================================
+# jdeathe/caddy
+#
+# Caddy is an alternative web server that is easy to configure and use.
+# =============================================================================
 FROM scratch
 
 MAINTAINER James Deathe <james.deathe@gmail.com>
-
-ARG RELEASE_VERSION="1.0.0"
 
 COPY src /
 
 EXPOSE 2015 8080 8443
 
+# -----------------------------------------------------------------------------
+# Set default environment variables used to configure the service container
+# -----------------------------------------------------------------------------
 ENV CADDY_VERSION="0.9.5" \
 	CADDYPATH="/var/caddy" \
 	CASE_SENSITIVE_PATH=true
 
+# -----------------------------------------------------------------------------
+# Set image metadata
+# -----------------------------------------------------------------------------
+ARG RELEASE_VERSION="1.0.0"
 LABEL \
 	install="\
 docker run -d \ 
