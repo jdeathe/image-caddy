@@ -59,4 +59,4 @@ WORKDIR /var/www/app
 
 ENTRYPOINT ["/usr/sbin/caddy"]
 
-CMD ["--conf", "/etc/caddy/Caddyfile", "-quiet=true"]
+CMD ["-conf", "/etc/caddy/Caddyfile", "-quiet=true"]
