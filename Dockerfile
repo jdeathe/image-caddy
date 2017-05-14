@@ -14,14 +14,14 @@ EXPOSE 2015 8080 8443
 # -----------------------------------------------------------------------------
 # Set default environment variables used to configure the service container
 # -----------------------------------------------------------------------------
-ENV CADDY_VERSION="0.9.5" \
+ENV CADDY_VERSION="0.10.2" \
 	CADDYPATH="/var/caddy" \
 	CASE_SENSITIVE_PATH=true
 
 # -----------------------------------------------------------------------------
 # Set image metadata
 # -----------------------------------------------------------------------------
-ARG RELEASE_VERSION="1.0.0"
+ARG RELEASE_VERSION="1.1.0"
 LABEL \
 	install="\
 docker run -d \ 
@@ -59,4 +59,4 @@ WORKDIR /var/www/app
 
 ENTRYPOINT ["/usr/sbin/caddy"]
 
-CMD ["--conf", "/etc/caddy/Caddyfile", "-quiet=true"]
+CMD ["-conf", "/etc/caddy/Caddyfile", "-quiet=true"]
