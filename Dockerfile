@@ -5,8 +5,6 @@
 # =============================================================================
 FROM scratch
 
-MAINTAINER James Deathe <james.deathe@gmail.com>
-
 COPY src /
 
 EXPOSE 2015 8080 8443
@@ -23,6 +21,7 @@ ENV CADDY_VERSION="0.10.2" \
 # -----------------------------------------------------------------------------
 ARG RELEASE_VERSION="1.1.0"
 LABEL \
+	maintainer="James Deathe <james.deathe@gmail.com>" \
 	install="\
 docker run -d \ 
 --name \${NAME} \
