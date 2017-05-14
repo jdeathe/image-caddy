@@ -14,7 +14,7 @@ EXPOSE 2015 8080 8443
 # -----------------------------------------------------------------------------
 # Set default environment variables used to configure the service container
 # -----------------------------------------------------------------------------
-ENV CADDY_VERSION="0.9.5" \
+ENV CADDY_VERSION="0.10.2" \
 	CADDYPATH="/var/caddy" \
 	CASE_SENSITIVE_PATH=true
 
