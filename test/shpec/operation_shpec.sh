@@ -1,4 +1,4 @@
-readonly BOOTSTRAP_BACKOFF_TIME=1
+readonly STARTUP_TIME=1
 readonly TEST_DIRECTORY="test"
 
 # These should ideally be a static value but hosts might be using this port so 
@@ -57,7 +57,7 @@ function test_basic_operations ()
 				jdeathe/caddy:latest \
 			&> /dev/null
 
-			sleep ${BOOTSTRAP_BACKOFF_TIME}
+			sleep ${STARTUP_TIME}
 
 			container_running_id="$(
 				docker ps \
