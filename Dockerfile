@@ -12,14 +12,14 @@ EXPOSE 2015 8080 8443
 # -----------------------------------------------------------------------------
 # Set default environment variables used to configure the service container
 # -----------------------------------------------------------------------------
-ENV CADDY_VERSION="0.10.2" \
+ENV CADDY_VERSION="0.10.6" \
 	CADDYPATH="/var/caddy" \
 	CASE_SENSITIVE_PATH=true
 
 # -----------------------------------------------------------------------------
 # Set image metadata
 # -----------------------------------------------------------------------------
-ARG RELEASE_VERSION="1.1.0"
+ARG RELEASE_VERSION="1.2.0"
 LABEL \
 	maintainer="James Deathe <james.deathe@gmail.com>" \
 	install="\
