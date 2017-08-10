@@ -29,7 +29,7 @@ services:
     command: ["-conf", "/etc/caddy/Caddyfile-php", "-quiet=true"]
     depends_on:
       - "php71_fpm"
-    image: "jdeathe/caddy:1.1.0"
+    image: "jdeathe/caddy:1.2.0"
     links:
       - "php71_fpm"
     networks:
