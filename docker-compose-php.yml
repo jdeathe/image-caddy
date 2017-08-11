@@ -3,9 +3,7 @@
 # 
 # docker-compose -f docker-compose-php.yml -p caddyphp1 down
 # 
-# docker-compose -f docker-compose-php.yml -p caddyphp1 up -d
-# docker-compose -f docker-compose-php.yml -p caddyphp1 scale php71_fpm=2
-# docker-compose -f docker-compose-php.yml -p caddyphp1 up -d --force-recreate --no-deps caddy
+# docker-compose -f docker-compose-php.yml -p caddyphp1 up -d --scale php71_fpm=2
 #
 # Known Issues:
 # Use of a named data volume is necessary to share the application directory 
@@ -43,7 +41,7 @@ services:
   php71_fpm:
     group_add:
       - "497"
-    image: "php:7.1.1-fpm-alpine"
+    image: "php:7.1.8-fpm-alpine"
     networks:
       php_fpm:
         aliases:
