@@ -6,17 +6,18 @@
 
 ### Tags and respective `Dockerfile` links
 
-- `1.1.0` [(master/Dockerfile)](https://github.com/jdeathe/image-caddy/blob/master/Dockerfile)
+- `1.2.0` [(master/Dockerfile)](https://github.com/jdeathe/image-caddy/blob/master/Dockerfile)
 
 ## Quick Example
 
 ```
-$ docker run -d \
+$ docker run \
+  --detach \
   --name caddy_1 \
   --restart always \
   --publish 443:2015 \
   --publish 80:8080 \
-  jdeathe/caddy:1.1.0
+  jdeathe/caddy:1.2.0
 ```
 
 Now point your browser to `http://{docker-host}` where `{docker-host}` is the host name of your docker server and, if all went well, you should be redirected to the `https://{docker-host}` and, after accepting the warning about the automatically generated self-signed TLS/SSL certificate, see the "Hello, world!" page.

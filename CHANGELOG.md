@@ -4,9 +4,12 @@ Summary of release changes.
 
 Caddy - The HTTP/2 web server with automatic HTTPS.
 
-## 1.1.1 - Unreleased
+## 1.2.0 - Unreleased
 
+- Updates Caddy to version 0.10.6.
 - Replaces deprecated Dockerfile `MAINTAINER` with a `LABEL` equivalent.
+- Adds `STARTUP_TIME` variable for the `logs-delayed` Makefile target.
+- Adds test case output with improved readability.
 
 ## 1.1.0 - 2017-05-14
 
